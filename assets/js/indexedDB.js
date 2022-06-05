@@ -17,7 +17,7 @@ database.onupgradeneeded = (event) => {
 database.onsuccess = (event) => {
   let db = event.target.result;
   // 接続を解除する
-  db.close;
+  db.close();
   console.log("データベースに接続できました");
 }
 database.onerror = (event) => {
