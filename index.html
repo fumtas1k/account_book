@@ -13,7 +13,7 @@
     <script src="assets/js/indexedDB.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="assets/js/graph.js"></script>
-    <script src="inputCheck.js"></script>
+    <script src="assets/js/inputCheck.js"></script>
 </head>
 
 <body>
@@ -32,13 +32,13 @@
         <section id="inputSection">
             <div>
                 <label for="balance">収支</label>
-                <input type="radio" value="支出" name="balance" checked>支出
-                <input type="radio" value="収入" name="balance">収入
-                <label>日付</label>
-                <input type="date">
-                <label>カテゴリ</label>
+                <input type="radio" value="支出" name="balance" onclick="disableSelectBox(false);" checked>支出
+                <input type="radio" value="収入" name="balance" onclick="disableSelectBox(true);">収入
+                <label for="date">日付</label>
+                <input type="date" name="date" id="date">
+                <label for="category">カテゴリ</label>
 
-                <select>
+                <select name="category" id="category">
                     <option>-選択してください-</option>
                     <option>食費</option>
                     <option>趣味</option>
@@ -53,14 +53,14 @@
                 </select>
             </div>
             <div>
-                <label>金額</label>
-                <input type="number" placeholder="金額を記入">円
-                <label>メモ</label>
-                <input type="text" placeholder="買ったものを記入">
+                <label for="amount">金額</label>
+                <input type="number" name="amount" id="amount" placeholder="金額を記入">円
+                <label for="memo">メモ</label>
+                <input type="text" name="memo" id="memo" placeholder="買ったものを記入">
             </div>
         </section>
         <div class="submit">
-            <button>登録する</button>
+            <button onclick="inputCheck();">登録する</button>
         </div>
 
         <!-- 入出金一覧 -->
