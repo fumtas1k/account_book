@@ -1,14 +1,14 @@
-//ラジオボタンによりカテゴリを有効無効切り替え
+// ラジオボタンによりカテゴリを有効無効切り替え
 const disableSelectBox = (disabled) => {
   document.getElementById("category").disabled = disabled;
 }
 
-//収支入力フォームの内容チェック
+// 収支入力フォームの内容チェック
 const inputCheck = () => {
-  //チェック結果 true:入力チェックOK　false:未記入アリ
+  // チェック結果 true:入力チェックOK　false:未記入アリ
   let result = true;
 
-  //選択した収支のラジオボタンの取得
+  // 選択した収支のラジオボタンの取得
   let radios = document.getElementsByName("balance");
   let balance;
   for (let radio of radios) {
@@ -18,13 +18,13 @@ const inputCheck = () => {
     }
   }
 
-  //日付、カテゴリ、金額、メモの取得
+  // 日付、カテゴリ、金額、メモの取得
   let date = document.getElementById("date").value;
   let category = document.getElementById("category").value;
   let amount = document.getElementById("amount").value;
   let memo = document.getElementById("memo").value;
 
-   //入力チェック。未記入があればresultをfalseにする
+   // 入力チェック。未記入があればresultをfalseにする
    if (date === "") {
      result = false;
      alert("日付が未記入です");
