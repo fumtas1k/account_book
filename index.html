@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-earthly.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <script src="assets/js/linkMove.js"></script>
     <script src="assets/js/indexedDB.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="assets/js/graph.js"></script>
@@ -17,17 +18,17 @@
 
 <body>
     <header>
-        <h1>MyMoney</h1>
+        <h1 id="home">MyMoney</h1>
         <div class="navi">
-            <button>ホーム</button>
-            <button>入力</button>
-            <button>入出金一覧</button>
-            <button>グラフ</button>
+            <button onclick="jumpId('#home');">ホーム</button>
+            <button onclick="jumpId('#input');">入力</button>
+            <button onclick="jumpId('#inOutList');">入出金一覧</button>
+            <button onclick="jumpId('#graph');">グラフ</button>
         </div>
     </header>
     <article>
         <!-- 入力 -->
-        <h2>入力</h2>
+        <h2 id="input">入力</h2>
         <section id="inputSection">
             <div>
                 <label for="balance">収支</label>
@@ -63,13 +64,13 @@
         </div>
 
         <!-- 入出金一覧 -->
-        <h2>入出金一覧</h2>
+        <h2 id="inOutList">入出金一覧</h2>
         <section id="list">
             <!-- ここに入出金一覧を表示します。 -->
         </section>
 
         <!-- グラフ -->
-        <h2>グラフ</h2>
+        <h2 id="graph">グラフ</h2>
         <!-- <hr> -->
         <section>
             <!-- ここにグラフを表示します。 -->
