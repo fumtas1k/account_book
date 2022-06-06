@@ -140,7 +140,7 @@ const createList = () => {
             <td>${element.category}</td>
             <td>${element.amount}</td>
             <td>${element.memo}</td>
-            <td><button>x</button></td>
+            <td><button onclick="deleteData('${element.id}');">x</button></td>
           </tr>
         `;
       });
@@ -150,5 +150,39 @@ const createList = () => {
       `;
       section.innerHTML = table;
     }
+  }
+}
+
+// データの削除
+const deleteData = (id) => {
+  let database = indexedDB.open(dbName, dbVersion);
+  database.onupgradeneeded = (event) => {
+    let db = event.target.result;
+  }
+  database.onsuccess = (event) => {
+    let db = event.target.result;
+    let transaction = db.transaction(storeName, "readwrite");
+    transaction.oncomplete = (event) => {
+      console.log("トランザクション完了");
+    }
+    transaction.onerror = (event) => {
+      console.log("トランザクションエラー");
+    }
+    let store = transaction.objectStore(storeName);
+
+    // idは文字列(データベースに登録したものと同じ型)を入力
+    let deleteData = store.delete(id);
+    deleteData.onsuccess = (event) => {
+      console.log(`削除成功${id}`);
+      createList();
+    }
+    deleteData.onerror = (event) => {
+      console.log("削除失敗");
+    }
+    db.close();
+  }
+  // データベースの開なかった時の処理
+  database.onerror = (event) => {
+    console.log("データベースに接続できませんでした");
   }
 }
