@@ -5,7 +5,7 @@ const dbVersion = 1;
 
 
 // データベース接続。データベースが未作成なら新規作成
-let database = indexedDB.open(dbName, dbVersion);
+const database = indexedDB.open(dbName, dbVersion);
 
 // データベースとオブジェクトストアの作成
 database.onupgradeneeded = (event) => {
@@ -71,7 +71,7 @@ const insertData = (balance, date, category, amount, memo) => {
   }
 
   // データベースを開く
-  let database = indexedDB.open(dbName, dbVersion);
+  const database = indexedDB.open(dbName, dbVersion);
 
   // データベースの開なかった時の処理
   database.onerror = (event) => {
@@ -89,7 +89,7 @@ const insertData = (balance, date, category, amount, memo) => {
       console.log("トランザクションエラー");
     }
 
-    let store = transaction.objectStore(storeName);
+    const store = transaction.objectStore(storeName);
     let addData = store.add(data);
     addData.onsuccess = () => {
       console.log("データが登録できました");
@@ -104,11 +104,11 @@ const insertData = (balance, date, category, amount, memo) => {
 }
 
 const createList = () => {
-  let database = indexedDB.open(dbName, dbVersion);
+  const database = indexedDB.open(dbName, dbVersion);
   database.onsuccess = (event) => {
     let db = event.target.result;
     let transaction = db.transaction(storeName, "readonly");
-    let store = transaction.objectStore(storeName);
+    const store = transaction.objectStore(storeName);
     store.getAll().onsuccess = (data) => {
       console.log(data);
       let rows = data.target.result;
@@ -155,7 +155,7 @@ const createList = () => {
 
 // データの削除
 const deleteData = (id) => {
-  let database = indexedDB.open(dbName, dbVersion);
+  const database = indexedDB.open(dbName, dbVersion);
   database.onupgradeneeded = (event) => {
     let db = event.target.result;
   }
@@ -168,7 +168,7 @@ const deleteData = (id) => {
     transaction.onerror = (event) => {
       console.log("トランザクションエラー");
     }
-    let store = transaction.objectStore(storeName);
+    const store = transaction.objectStore(storeName);
 
     // idは文字列(データベースに登録したものと同じ型)を入力
     let deleteData = store.delete(id);
