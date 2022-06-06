@@ -21,7 +21,7 @@ const createPieChart = (rows) => {
   // 円グラフ用にカテゴリと合計金額を配列に入れる
   let keyArray = [];
   let valueArray = [];
-  for (key in pieChartData) {
+  for (let key in pieChartData) {
     keyArray.push(key);
     valueArray.push(pieChartData[key]);
   }
